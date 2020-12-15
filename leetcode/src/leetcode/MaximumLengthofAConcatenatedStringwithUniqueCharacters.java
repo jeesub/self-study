@@ -19,12 +19,14 @@ public class MaximumLengthofAConcatenatedStringwithUniqueCharacters {
 	public int maxLength(List<String> arr) {
 		List<String> result = new ArrayList<>();
 		result.add("");
-		for (String str : arr) {
-			List<String> tmpResult = new ArrayList<>();
 
-			if (uniq(str)) {
-				tmpResult.add(str);
+		for (String str : arr) {
+			if (!uniq(str)) {
+				continue;
 			}
+
+			List<String> tmpResult = new ArrayList<>();
+			tmpResult.add(str);
 
 			for (String res : result) {
 				String conc = new StringBuilder(res).append(str).toString();
