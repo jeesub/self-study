@@ -23,9 +23,11 @@ public class FibonacciNumber {
 	}
 
 	public static void main(String[] args) {
-		for (int i = 1; i <= 15; i++) {
-			System.out.print(getFibonacciNumber(i) + " ");
-		}
+//		for (int i = 1; i <= 15; i++) {
+//			System.out.print(getFibonacciNumber(i) + " ");
+//		}
+		int a = ((-2 % 3) + 3) % 3;
+		System.out.println(a);
 	}
 
 }
