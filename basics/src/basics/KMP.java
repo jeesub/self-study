@@ -1,7 +1,5 @@
 package basics;
 
-import java.util.Arrays;
-
 /***
  * 
  * Knuth-Morris-Pratt algorithm
@@ -16,7 +14,7 @@ import java.util.Arrays;
  */
 public class KMP {
 
-	public boolean partialMatch(String hay, String needle) {
+	public static boolean canFindSubstring(String hay, String needle) {
 		int[] lps = getLPS(needle);
 		int i = 0;
 		int j = 0;
@@ -26,7 +24,7 @@ public class KMP {
 				i++;
 				j++;
 				if (i == needle.length()) {
-					break;
+					return true;
 				}
 			} else if (i > 0) {
 				i = lps[i - 1];
@@ -35,10 +33,32 @@ public class KMP {
 			}
 		}
 
-		return i == needle.length();
+		return false;
 	}
 
-	private int[] getLPS(String needle) {
+	public static int findSubstring(String hay, String needle) {
+		int[] lps = getLPS(needle);
+		int i = 0;
+		int j = 0;
+
+		while (j < hay.length()) {
+			if (needle.charAt(i) == hay.charAt(j)) {
+				i++;
+				j++;
+				if (i == needle.length()) {
+					return j - needle.length();
+				}
+			} else if (i > 0) {
+				i = lps[i - 1];
+			} else {
+				j++;
+			}
+		}
+
+		return -1;
+	}
+
+	private static int[] getLPS(String needle) {
 		// get Longest Prefix Suffix
 		int[] lps = new int[needle.length()];
 		int i = 0;
@@ -58,14 +78,17 @@ public class KMP {
 	}
 
 	public static void main(String[] args) {
-		KMP solution = new KMP();
 		String hay1 = "abcdabcxabcdabcyabcdabcuabcabcdabcx";
 		String hay2 = "abcdabcxabcdabcyabcdabcxabcabcdabcx";
 		String needle = "abcdabcu";
-		System.out.println(solution.partialMatch(hay1, needle));
+		System.out.println(canFindSubstring(hay1, needle));
 		// output: true
-		System.out.println(solution.partialMatch(hay2, needle));
+		System.out.println(canFindSubstring(hay2, needle));
 		// output: false
+		System.out.println(findSubstring(hay1, needle));
+		// output: 16
+		System.out.println(findSubstring(hay2, needle));
+		// output: -1
 	}
 
 }
