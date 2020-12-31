@@ -70,7 +70,7 @@ public class KMP {
 			} else if (i > 0) {
 				i = lps[i - 1];
 			} else {
-				lps[j++] = 0;
+				j++;
 			}
 		}
 
