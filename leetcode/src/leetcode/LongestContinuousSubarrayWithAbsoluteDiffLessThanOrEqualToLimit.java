@@ -2,6 +2,8 @@ package leetcode;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
 /**
  * 
@@ -35,7 +37,25 @@ import java.util.Deque;
  */
 public class LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit {
 
-	public static int longestSubarray(int[] nums, int limit) {
+	public static int longestSubarrayTreeMap(int[] nums, int limit) {
+		NavigableMap<Integer, Integer> tm = new TreeMap<>();
+		int i = 0;
+		for (int num : nums) {
+			tm.put(num, tm.getOrDefault(num, 0) + 1);
+			int max = tm.firstEntry().getKey();
+			int min = tm.lastEntry().getKey();
+			if (Math.abs(max - min) > limit) {
+				tm.put(nums[i], tm.get(nums[i]) - 1);
+				if (tm.get(nums[i]) == 0) {
+					tm.remove(nums[i]);
+				}
+				i++;
+			}
+		}
+		return nums.length - i;
+	}
+
+	public static int longestSubarrayDoubleDeque(int[] nums, int limit) {
 		Deque<Integer> maxDeque = new ArrayDeque<>();
 		Deque<Integer> minDeque = new ArrayDeque<>();
 		int i = 0;
@@ -64,7 +84,8 @@ public class LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit {
 	public static void main(String[] args) {
 		int[] nums = {10,1,2,4,7,2};
 		int limit = 5;
-		System.out.print(longestSubarray(nums, limit));
+		System.out.println(longestSubarrayTreeMap(nums, limit));
+		System.out.println(longestSubarrayDoubleDeque(nums, limit));
 		// output: 4
 	}
 
