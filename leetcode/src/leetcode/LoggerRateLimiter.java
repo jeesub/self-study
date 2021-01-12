@@ -73,12 +73,12 @@ public class LoggerRateLimiter {
 				Pair removedPair = cacheQueue.removeFirst();
 				cacheSet.remove(removedPair.message);
 			}
-			if (!cacheSet.contains(message)) {
-				cacheQueue.addLast(new Pair(message, timestamp));
-				cacheSet.add(message);
-				return true;
+			if (cacheSet.contains(message)) {
+				return false;
 			}
-			return false;
+			cacheQueue.addLast(new Pair(message, timestamp));
+			cacheSet.add(message);
+			return true;
 		}
 	}
 }
