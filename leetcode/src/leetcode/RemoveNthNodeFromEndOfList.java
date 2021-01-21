@@ -16,14 +16,11 @@ package leetcode;
  */
 public class RemoveNthNodeFromEndOfList {
 	public static ListNode removeNthFromEnd(ListNode head, int n) {
-		ListNode first = head;
-		ListNode second = head;
-		for (int i = 0; i < n; i++) {
-			first = first.next;
-		}
-		if (first == null) {
-			return head.next;
-		} else {
+		ListNode dummyHead = new ListNode(-1);
+		dummyHead.next = head;
+		ListNode first = dummyHead;
+		ListNode second = dummyHead;
+		for (int i = 0; i <= n; i++) {
 			first = first.next;
 		}
 		while (first != null) {
@@ -31,7 +28,7 @@ public class RemoveNthNodeFromEndOfList {
 			second = second.next;
 		}
 		second.next = second.next.next;
-		return head;
+		return dummyHead.next;
 	}
 
 	private static class ListNode {
