@@ -29,22 +29,22 @@ public class MergeIntervals {
 		if (intervals.length == 0) {
 			return new int[0][2];
 		}
+
 		Arrays.sort(intervals, (a, b) -> (a[0] - b[0]));
+
+		int[] prev = Arrays.copyOf(intervals[0], 2);
 		List<int[]> result = new ArrayList<>();
-		int start = intervals[0][0];
-		int end = intervals[0][1];
 		for (int i = 1; i < intervals.length; i++) {
-			if (end >= intervals[i][0]) {
-				end = Math.max(end, intervals[i][1]);
+			int[] curr = intervals[i];
+			if (prev[1] >= curr[0]) {
+				prev[1] = Math.max(prev[1], curr[1]);
 			} else {
-				result.add(new int[] { start, end });
-				start = intervals[i][0];
-				end = intervals[i][1];
+				result.add(prev);
+				prev = curr;
 			}
 		}
-		if (result.isEmpty() || end != result.get(result.size() - 1)[1]) {
-			result.add(new int[] { start, end });
-		}
+		result.add(prev);
+
 		int[][] resultArray = new int[result.size()][2];
 		return result.toArray(resultArray);
 	}
