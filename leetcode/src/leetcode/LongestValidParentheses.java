@@ -10,7 +10,8 @@ import java.util.Deque;
  * 
  * Use a stack to store the openers' indices and end points.
  * The purpose of storing end points is to deal with a case like ()().
- * We should know the valid end point instead of start point.
+ * Storing the valid previous end point makes a problem easier.
+ * 
  * If curr char is opener, put it into the stack.
  * Else,
  *     pop it.
