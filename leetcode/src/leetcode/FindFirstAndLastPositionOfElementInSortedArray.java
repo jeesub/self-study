@@ -14,40 +14,42 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
 
     public static int[] searchRange(int[] nums, int target) {
         if (nums.length == 0) {
-            return new int[] {-1, -1};
+            return new int[] { -1, -1 };
         }
         int[] result = new int[2];
-        result[0] = findElement(nums, target, true);
-        result[1] = findElement(nums, target, false);
+        result[0] = findFirst(nums, target);
+        result[1] = findLast(nums, target);
         return result;
     }
 
-    private static int findElement(int[] nums, int target, boolean findFirst) {
+    private static int findFirst(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;
         int mid;
         while (left <= right) {
-            if (findFirst) {
-                mid = left + (right - left) / 2;
-                if (nums[mid] >= target) {
-                    right = mid - 1;
-                } else {
-                    left = mid + 1;
-                }
+            mid = left + (right - left) / 2;
+            if (nums[mid] >= target) {
+                right = mid - 1;
             } else {
-                mid = left + (right - left + 1) / 2;
-                if (nums[mid] <= target) {
-                    left = mid + 1;
-                } else {
-                    right = mid - 1;
-                }
+                left = mid + 1;
             }
         }
-        if (findFirst) {
-            return (left < nums.length && nums[left] == target) ? left : -1;
-        } else {
-            return (right >= 0 && nums[right] == target) ? right : -1;
+        return (left < nums.length && nums[left] == target) ? left : -1;
+    }
+
+    private static int findLast(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int mid;
+        while (left <= right) {
+            mid = left + (right - left + 1) / 2;
+            if (nums[mid] <= target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
         }
+        return (right >= 0 && nums[right] == target) ? right : -1;
     }
 
     public static void main(String[] args) {
