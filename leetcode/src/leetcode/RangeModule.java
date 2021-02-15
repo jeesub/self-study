@@ -9,26 +9,29 @@ import java.util.TreeSet;
  * Range Module.
  * TreeSet<Range>
  * Range contains start and end points.
- * Implement comparable ordered by start point and end point.
+ * Implement comparable ordered by end point and start point.
  * 
  * [AddRange]
  * <--> <--> <-->  | <-------> |   <--> <--> <-->
  *   <========>    |   <===>   | <================>
- * Find overlapped ranges in a treeset with start point.
- * Merge overlapped ranges and add into a treeset.
- * Remove merged ranges from a treeset.
+ * Find a sorted set of overlapped ranges in a treeset.
+ * Ideally, using a subSet is the best way but it is hard to define the last element.
+ * So, use tailSet instead of subSet.
+ * Update left as a minimum value and right as a maximum value.
+ * Remove overlapped ranges from a treeset.
  * 
  * [QueryRange]
  * <------->
  *   <===>
- * Find an overlapped range with start point.
+ * Find an overlapped range.
  * If the overlapped range cover the input range, return true.
  *
  * [RemoveRange]
  * <--> <--> <-->  | <-------> |   <--> <--> <-->
  *   <========>    |   <===>   | <================>
- * Find overlapped ranges in a treeset with start point.
- * Make new ranges and keep the unremoved ranges at start and end if necessary.
+ * Find overlapped ranges in a treeset.
+ * If we need to make new ranges, make and keep it.
+ * New ranges can be placed at the most left or the most right.
  * Remove overlapped ranges from a treeset.
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
@@ -40,7 +43,7 @@ public class RangeModule {
     }
 
     public void addRange(int left, int right) {
-        SortedSet<Range> sortedSet = ranges.tailSet(new Range(-1, left - 1));
+        SortedSet<Range> sortedSet = ranges.tailSet(new Range(-1, left));
         List<Range> removeList = new ArrayList<>();
         for (Range range : sortedSet) {
             if (range.getLeft() > right) {
