@@ -1,5 +1,8 @@
 package leetcode;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
@@ -37,74 +40,53 @@ public class RangeModule {
     }
 
     public void addRange(int left, int right) {
-        Range input = new Range(left, right);
-        // DEBUGGING
-        // System.out.println("addRange " + input);
-        Range overlapped = ranges.floor(input);
-        if (overlapped != null && input.getLeft() <= overlapped.getRight()) {
-            input.setLeft(Math.min(input.getLeft(), overlapped.getLeft()));
-            input.setRight(Math.max(input.getRight(), overlapped.getRight()));
-            ranges.remove(overlapped);
-        }
-        overlapped = ranges.ceiling(input);
-        while (overlapped != null) {
-            if (overlapped.getRight() < input.getLeft() || overlapped.getLeft() > input.getRight()) {
+        SortedSet<Range> sortedSet = ranges.tailSet(new Range(-1, left - 1));
+        List<Range> removeList = new ArrayList<>();
+        for (Range range : sortedSet) {
+            if (range.getLeft() > right) {
                 break;
             }
-            input.setLeft(Math.min(input.getLeft(), overlapped.getLeft()));
-            input.setRight(Math.max(input.getRight(), overlapped.getRight()));
-            ranges.remove(overlapped);
-            overlapped = ranges.ceiling(input);
+            left = Math.min(left, range.getLeft());
+            right = Math.max(right, range.getRight());
+            removeList.add(range);
         }
-        ranges.add(input);
+        for (Range range : removeList) {
+            ranges.remove(range);
+        }
+        ranges.add(new Range(left, right));
         // DEBUGGING
         // System.out.println(ranges);
     }
 
     public boolean queryRange(int left, int right) {
-        Range input = new Range(left, right);
-        // DEBUGGING
-        // System.out.println("queryRange " + input);
-        Range overlapped = ranges.floor(input);
-        if (overlapped == null) {
+        Range range = ranges.ceiling(new Range(-1, right));
+        if (range == null) {
             return false;
         }
-        return overlapped.getLeft() <= input.getLeft() && input.getRight() <= overlapped.getRight();
+        return range.getLeft() <= left && range.getRight() >= right;
     }
 
     public void removeRange(int left, int right) {
-        Range input = new Range(left, right);
-        // DEBUGGING
-        // System.out.println("removeRange " + input);
-        Range leftOverlapped = ranges.floor(input);
-        if (leftOverlapped != null && input.getLeft() < leftOverlapped.getRight()) {
-            // <-->   have to keep a left part <->
-            //   <==>
-            if (leftOverlapped.getLeft() < input.getLeft()) {
-                Range newRange = new Range(leftOverlapped.getLeft(), input.getLeft());
-                ranges.add(newRange);
-            }
-            //   <--> have to keep a right part <->
-            // <==>
-            if (input.getRight() < leftOverlapped.getRight()) {
-                Range newRange = new Range(input.getRight(), leftOverlapped.getRight());
-                ranges.add(newRange);
-            }
-            ranges.remove(leftOverlapped);
-        }
-        Range overlapped = ranges.ceiling(input);
-        while (overlapped != null) {
-            if (input.getRight() < overlapped.getRight()) {
+        SortedSet<Range> sortedSet = ranges.tailSet(new Range(-1, left));
+        List<Range> removeList = new ArrayList<>();
+        List<Range> addList = new ArrayList<>();
+        for (Range range : sortedSet) {
+            if (range.getLeft() >= right) {
                 break;
             }
-            ranges.remove(overlapped);
-            overlapped = ranges.ceiling(input);
+            if (range.getLeft() < left) {
+                addList.add(new Range(range.getLeft(), left));
+            }
+            if (range.getRight() > right) {
+                addList.add(new Range(right, range.getRight()));
+            }
+            removeList.add(range);
         }
-        Range rightOverlapped = ranges.ceiling(input);
-        if (rightOverlapped != null && rightOverlapped.getLeft() < input.getRight()) {
-            Range newRange = new Range(input.getRight(), rightOverlapped.getRight());
-            ranges.add(newRange);
-            ranges.remove(rightOverlapped);
+        for (Range range : removeList) {
+            ranges.remove(range);
+        }
+        for (Range range : addList) {
+            ranges.add(range);
         }
         // DEBUGGING
         // System.out.println(ranges);
@@ -127,20 +109,12 @@ public class RangeModule {
             return right;
         }
 
-        public void setLeft(int newLeft) {
-            this.left = newLeft;
-        }
-
-        public void setRight(int newRight) {
-            this.right = newRight;
-        }
-
         @Override
         public int compareTo(Range other) {
-            if (this.getLeft() != other.getLeft()) {
-                return this.getLeft() - other.getLeft();
+            if (this.getRight() != other.getRight()) {
+                return this.getRight() - other.getRight();
             }
-            return other.getRight() - this.getRight();
+            return this.getLeft() - other.getLeft();
         }
 
         @Override
