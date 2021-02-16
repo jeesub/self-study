@@ -64,9 +64,6 @@ public class InsertDeleteGeRandomO1 {
     }
 
     public int getRandom() {
-        if (list.size() == 1) {
-            return list.get(0);
-        }
         int index = random.nextInt(list.size());
         return list.get(index);
     }
