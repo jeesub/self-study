@@ -25,11 +25,9 @@ public class Q1041_RobotBoundedInCircle {
             if (c == 'G') {
                 curr[0] += directions[direction][0];
                 curr[1] += directions[direction][1];
-            }
-            if (c == 'L') {
+            } else if (c == 'L') {
                 direction = (direction + 1) % 4;
-            }
-            if (c == 'R') {
+            } else if (c == 'R') {
                 direction = (direction + 3) % 4;
             }
         }
