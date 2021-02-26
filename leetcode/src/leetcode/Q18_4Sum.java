@@ -18,7 +18,7 @@ import java.util.List;
 public class Q18_4Sum {
 
 	public static List<List<Integer>> fourSum(int[] nums, int target) {
-		Arrays.parallelSort(nums);
+		Arrays.sort(nums);
 		List<List<Integer>> result = new ArrayList<>();
 		for (int i = 0; i < nums.length - 3; i++) {
 			if (i > 0 && nums[i] == nums[i - 1]) {
