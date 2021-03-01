@@ -12,26 +12,23 @@ import java.util.List;
 public class Q39_CombinationSum {
 
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<Integer> path = new ArrayList<>();
         List<List<Integer>> result = new ArrayList<>();
-        for (int i = 0; i < candidates.length; i++) {
-            List<Integer> path = new ArrayList<>();
-            path.add(candidates[i]);
-            dfs(candidates, target, result, path, i, candidates[i]);
-        }
+        dfs(candidates, path, result, target, 0);
         return result;
     }
     
-    private static void dfs(int[] candidates, int target, List<List<Integer>> result, List<Integer> path, int pointer, int sum) {
-        if (sum > target) {
+    private static void dfs(int[] candidates, List<Integer> path, List<List<Integer>> result, int target, int index) {
+        if (target < 0) {
             return;
         }
-        if (sum == target) {
+        if (target == 0) {
             result.add(new ArrayList<>(path));
             return;
         }
-        for (int i = pointer; i < candidates.length; i++) {
+        for (int i = index; i < candidates.length; i++) {
             path.add(candidates[i]);
-            dfs(candidates, target, result, path, i, sum + candidates[i]);
+            dfs(candidates, path, result, target - candidates[i], i);
             path.remove(path.size() - 1);
         }
     }
