@@ -38,14 +38,18 @@ public class Q127_WordLadder {
                 if (curr.equals(endWord)) {
                     return transformation;
                 }
+                char[] charArray = curr.toCharArray();
                 for (int i = 0; i < len; i++) {
+                    char tmp = charArray[i];
                     for (int j = 0; j < 26; j++) {
                         char c = (char) ('a' + j);
-                        String candidate = curr.substring(0, i) + c + curr.substring(i + 1, len);
+                        charArray[i] = c;
+                        String candidate = new String(charArray);
                         if (wordsSet.contains(candidate) && !visited.contains(candidate)) {
                             deque.addLast(candidate);
                             visited.add(candidate);
                         }
+                        charArray[i] = tmp;
                     }
                 }
                 size--;
