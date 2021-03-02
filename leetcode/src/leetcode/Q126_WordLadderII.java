@@ -9,6 +9,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Q126. Word Ladder II
+ * [BFS]
+ * Searches every possible path and returns the shortest paths.
+ * Starts with building words set and words map.
+ * Words map<String, List<String>> will contain possible variations.
+ * For example, key: *og, value: [dog, log, cog]
+ * Queue will contain paths.
+ * When we find a complete path, we can return all possible paths after current layer search.
+ * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
+ */
 public class Q126_WordLadderII {
 
     public static List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
