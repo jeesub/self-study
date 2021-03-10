@@ -4,30 +4,20 @@ import java.util.Arrays;
 
 /**
  * Q253. Meeting Rooms 2.
- * Returns the minimum number of meeting rooms required.
- * Make two arrays and each stores starts and ends.
- * Sort both arrays and check overlaps.
- * 
- * Iterate through the sorted start array.
- * And keep the end pointer.
- * If start[start pointer] < end[end pointer], we need a new room.
- * counter++
- * Else, it means that one meeting has finished and a room is vacant. We can use the room.
- * end pointer++
- *
- * ex)
- * intervals = [[0, 40], [5, 10], [15, 20], [20, 30]]
- * sorted start = [0, 5, 15, 20]
- * sorted end = [10, 20, 30, 40]
- * Start pointer starts at (0) and end pointer starts at (10)
- * 0 to 10 takes one meeting room.
- * -> cnt++, start pointer++
- * 5 is smaller than 10. So it nees a new meeting room.
- * -> cnt++, start pointer++
- * 15 is larger than 10. So it can use the existing room.
- * -> start pointer++, end pointer++
- * 20 is larger than or equal to 20. So it can use the existing room.
- * -> start pointer++, end pointer++
+ * We need to track the on-meeting rooms.
+ * <------------------>
+ *   <----->  <----->
+ *        <----->
+ *            ^
+ *            At this point, we know we can use the empty room.
+ *            So we don't need the fourth room.
+ * If we have a room where it's end is before the current start, it's an empty room.
+ * We need to separately track starts and ends.
+ * Sort two arrays, starts and ends.
+ * Iterate through the starts array.
+ * If ends[j] < starts[i], we can reuse the room ends at j.
+ * The room ends at j is occupied now, so j++.
+ * Else, we need one more room.
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q253_MeetingRooms2 {
