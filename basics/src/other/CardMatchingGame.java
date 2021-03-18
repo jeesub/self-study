@@ -25,7 +25,7 @@ public class CardMatchingGame extends JFrame {
         WAITING,
         LISTENING,
         ONE_CARD_IS_FLIPPED,
-        TWO_CARDS_ARE_FLIPPED,
+        TWO_CARDS_ARE_FLIPPED
     }
     private GameIs gameManager;
 
@@ -153,17 +153,17 @@ public class CardMatchingGame extends JFrame {
             return value;
         }
 
-        private void hide() {
+        private synchronized void hide() {
             button.setText(DEFAULT_CARD_FACE);
             button.setEnabled(true);
         }
 
-        private void reveal() {
+        private synchronized void reveal() {
             button.setText(value);
             button.setEnabled(false);
         }
 
-        private void isMatched() {
+        private synchronized void isMatched() {
             button.setText(value);
             button.setEnabled(false);
         }
