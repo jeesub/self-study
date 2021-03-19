@@ -4,54 +4,59 @@ import java.util.Arrays;
 
 /**
  * Q31. Next Permutation.
- * 1234 -> 1243
- * 1342 -> 1423
- * 1432 -> 2134
- * 
- * Look backwards.
- * When we find nums[i - 1] < nums[i], we can swap nums[i - 1] with the next number.
- * Beyond i - 1, it should be ascending order.
- * Reverse (i - 1 .. end)
- * If we fail to find the a right point, reverse the nums.
+ * 1 2 5 3 1 -> 1 3 1 2 5
+ * 531 is descending and 25 is ascending.
+ * We need to change 2 to the next large number.
+ * Next should be ascending order.
+ * If a number is descending, reverse it.
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q31_NextPermutation {
 
     public static void nextPermutation(int[] nums) {
-        int pointer = nums.length - 2;
-        while (pointer >= 0) {
-            if (nums[pointer] < nums[pointer + 1]) {
-                break;
-            }
-            pointer--;
-        }
-        if (pointer == -1) {
-            reverse(nums, 0);
+        int newPosition = getNewPosition(nums);
+        if (newPosition == -1) {
+            reverse(nums, 0, nums.length - 1);
             return;
         }
-        int nextPointer = nums.length - 1;
-        while (nums[nextPointer] <= nums[pointer]) {
-            nextPointer--;
-        }
-        swap(nums, pointer, nextPointer);
-        reverse(nums, pointer + 1);
+
+        int swapPosition = getSwapPosition(nums, newPosition);
+        swap(nums, newPosition, swapPosition);
+        reverse(nums, newPosition + 1, nums.length - 1);
     }
 
-    private static void reverse(int[] nums, int i) {
-        int j = nums.length - 1;
-        while (i < j) {
-            swap(nums, i, j);
-            i++;
-            j--;
+    private static int getNewPosition(int[] nums) {
+        int newPosition = -1;
+        for (int i = nums.length - 2; i >= 0; i--) {
+            if (nums[i] < nums[i + 1]) {
+                newPosition = i;
+                break;
+            }
         }
-        return;
+        return newPosition;
+    }
+
+    private static int getSwapPosition(int[] nums, int newPosition) {
+        int val = nums[newPosition];
+        int swapPosition = newPosition + 1;
+        for (int i = newPosition + 1; i < nums.length; i++) {
+            if (nums[i] > val && nums[i] <= nums[swapPosition]) {
+                swapPosition = i;
+            }
+        }
+        return swapPosition;
+    }
+
+    private static void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            swap(nums, start++, end--);
+        }
     }
 
     private static void swap(int[] nums, int i, int j) {
         int tmp = nums[i];
         nums[i] = nums[j];
         nums[j] = tmp;
-        return;
     }
 
     public static void main(String[] args) {
