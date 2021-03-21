@@ -14,8 +14,8 @@ public class Q415_AddStrings {
         int ptr2 = num2.length() - 1;
         int carry = 0;
         while (ptr1 >= 0 || ptr2 >= 0 || carry != 0) {
-            int cur1 = ptr1 >= 0 ? (int) (num1.charAt(ptr1) - '0') : 0;
-            int cur2 = ptr2 >= 0 ? (int) (num2.charAt(ptr2) - '0') : 0;
+            int cur1 = ptr1 >= 0 ? (int) Character.getNumericValue(num1.charAt(ptr1)) : 0;
+            int cur2 = ptr2 >= 0 ? (int) Character.getNumericValue(num2.charAt(ptr2)) : 0;
             int sum = cur1 + cur2 + carry;
             carry = sum / 10;
             sb.append(sum % 10);
