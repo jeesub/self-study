@@ -1,36 +1,28 @@
 package leetcode;
 /**
  * Q415. Add Strings.
- * Pointer1 starts at num1's end and decreases.
- * Pointer2 starts at num2's end and decreases.
- * while (num1 has elements || num2 has elements || we have a carry)
- *     append the one-digit of calculated number to the result
- *     get a new carry and pass it to the next loop
- * After all, return the reversed result.
+ * Use two pointers.
+ * Iterate from end to start while num1 isn't finished or num2 isn't finished, or carry is not zero.
+ * Append to stringbuiler and after iteration, reverse it.
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q415_AddStrings {
 
     public static String addStrings(String num1, String num2) {
-        StringBuilder revResult = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
+        int ptr1 = num1.length() - 1;
+        int ptr2 = num2.length() - 1;
         int carry = 0;
-        int pointer1 = num1.length() - 1;
-        int pointer2 = num2.length() - 1;
-        while (pointer1 >= 0 || pointer2 >= 0 || carry != 0) {
-            int curr1 = pointer1 >= 0 ? 
-                Character.getNumericValue(num1.charAt(pointer1)) : 0;
-            int curr2 = pointer2 >= 0 ? 
-                Character.getNumericValue(num2.charAt(pointer2)) : 0;
-            int curr = curr1 + curr2 + carry;
-            
-            carry = curr / 10;
-            curr = curr % 10;
-            revResult.append(String.valueOf(curr));
-            
-            pointer1--;
-            pointer2--;
+        while (ptr1 >= 0 || ptr2 >= 0 || carry != 0) {
+            int cur1 = ptr1 >= 0 ? (int) (num1.charAt(ptr1) - '0') : 0;
+            int cur2 = ptr2 >= 0 ? (int) (num2.charAt(ptr2) - '0') : 0;
+            int sum = cur1 + cur2 + carry;
+            carry = sum / 10;
+            sb.append(sum % 10);
+            ptr1--;
+            ptr2--;
         }
-        return revResult.reverse().toString();
+        return sb.reverse().toString();
     }
 
     public static void main(String[] args) {
