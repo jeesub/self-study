@@ -17,17 +17,9 @@ public class Q49_GroupAnagrams {
         Map<String, List<String>> map = new HashMap<>();
         for (String str : strs) {
             String key = buildKey(str);
-            List<String> list = map.getOrDefault(key, new ArrayList<>());
-            list.add(str);
-            map.put(key, list);
+            map.computeIfAbsent(key, (unused) -> new ArrayList<String>()).add(str);
         }
-
-        List<List<String>> result = new ArrayList<>();
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            result.add(entry.getValue());
-        }
-
-        return result;
+        return new ArrayList<>(map.values());
     }
 
     private static String buildKey(String str) {
