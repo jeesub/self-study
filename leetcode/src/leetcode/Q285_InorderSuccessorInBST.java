@@ -6,6 +6,9 @@ package leetcode;
  * 2. After find p
  *    If p has right child, we need to dig into it.
  *    Get the most left deepest child of the left child. It is a successor.
+ * -> We can merge one and two.
+ * If curr < target, go to the left. Curr is a successor candidate.
+ * Else, go to the right.
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q285_InorderSuccessorInBST {
@@ -14,20 +17,11 @@ public class Q285_InorderSuccessorInBST {
         TreeNode successor = null;
         TreeNode curr = root;
         while (curr != null) {
-            if (curr.val == p.val) {
-                break;
-            }
             if (curr.val > p.val) {
                 successor = curr;
                 curr = curr.left;
             } else {
                 curr = curr.right;
-            }
-        }
-        if (curr != null && curr.right != null) {
-            successor = curr.right;
-            while(successor.left != null) {
-                successor = successor.left;
             }
         }
         return successor;
