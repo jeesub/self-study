@@ -1,15 +1,11 @@
-package list;
+package iterator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-/**
- * Sort K Lists.
- * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
- */
-public class SortKLists {
+public class MergeKLists {
     public static List<Integer> sort(List<List<Integer>> lists) {
         List<Integer> result = new ArrayList<>();
         PriorityQueue<Node> minHeap = new PriorityQueue<>();
