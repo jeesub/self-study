@@ -5,10 +5,9 @@ import java.util.Deque;
 
 /**
  * JSON Validation.
- * 1. {, } should be matched.
- * 2. ", " should be matched.
- * 3. [, ] should be matched.
- * 4. Between key and value, there should be :. 
+ * {, }, [, ], and " should be matched.
+ * : should come between key and value.
+ * , should come between elements in an array, or key value pairs.
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class JsonValidation {
@@ -18,7 +17,6 @@ public class JsonValidation {
         char[] input = s.toCharArray();
         for (int i = 0; i < input.length; i++) {
             char c = input[i];
-            System.out.print(c);
             switch (c) {
                 case '{' :
                     deque.addLast(c);
@@ -67,8 +65,14 @@ public class JsonValidation {
     }
 
     public static void main(String[] args) {
-        String s = "{\"key1\":\"value1\",\"key2\":[\"e1\",\"e2\",\"e3\"],\"key3\":{\"key4\":\"value4\"}}";
-        System.out.println(validateJson(s));
+        String s1 = "{\"key1\":\"value1\",\"key2\":[\"e1\",\"e2\",\"e3\"],\"key3\":{\"key4\":\"value4\"}}";
+        String s2 = "{\"key1\":\"value1\",\"key2\":[{\"arrkey1\":\"arrval1\",\"arrkey2\":\"arrval2\"},\"e2\",\"e3\"],\"key3\":{\"key4\":\"value4\"},\"key5\":\"value6\"}";
+        String s3 = "{\"key1\":\"value1\",\"key2\":[{\"arrkey1\":\"arrval1\",\"arrkey2\":\"arrval2\"},\"e2\",\"e3\"],\"key3\":{\"key4\":\"value4\"}}}";
+        String s4 = "{{\"key1\":\"value1\",\"key2\":[{\"arrkey1\":\"arrval1\",\"arrkey2\":\"arrval2\"},\"e2\",\"e3\"],\"key3\":{\"key4\":\"value4\"},\"key5\":\"value6\"}";
+        System.out.println(validateJson(s1)); // output: true
+        System.out.println(validateJson(s2)); // output: true
+        System.out.println(validateJson(s3)); // output: false
+        System.out.println(validateJson(s4)); // output: false
     }
 
 }
