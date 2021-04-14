@@ -26,9 +26,9 @@ public class Q1594_MaximumNonNegativeProductInAMatrix {
             }
         }
 
-        long moduler = (long) Math.pow(10, 9) + 7;
+        long denominator = (long) Math.pow(10, 9) + 7;
         long result = maxDp[grid.length - 1][grid[0].length - 1];
-        result %= moduler;
+        result %= denominator;
         return result < 0 ? -1 : (int) result;
     }
 
