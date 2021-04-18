@@ -34,7 +34,7 @@ public class Q7_JumpGame {
             }
             if (i == currentMax) {
                 if (currentMax >= possibleMax) {
-                    return - 1;
+                    return -1;
                 }
                 currentMax = possibleMax;
                 count++;
@@ -44,14 +44,14 @@ public class Q7_JumpGame {
     }
 
     public static void main(String[] args) {
-        int[] nums = {2, 3, 0, 1, 4};
-        System.out.println(getMinJump(nums));
-        // output: 2
-        int[] nums2 = {2, 2, 0, 1, 4};
-        System.out.println(getMinJump(nums2));
-        // output: 3
-        int[] nums3 = {2, 2, 0, 0, 4};
-        System.out.println(getMinJump(nums3));
+        int[] nums1 = {2, 2, 0, 0, 4};
+        System.out.println(getMinJump(nums1));
         // output: -1
+        int[] nums2 = {2, 3, 0, 1, 4};
+        System.out.println(getMinJump(nums2));
+        // output: 2
+        int[] nums3 = {2, 2, 0, 1, 4};
+        System.out.println(getMinJump(nums3));
+        // output: 3
     }
 }
