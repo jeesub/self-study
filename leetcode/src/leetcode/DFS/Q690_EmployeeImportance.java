@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.DFS;
 
 import java.util.HashMap;
 import java.util.List;

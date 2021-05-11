@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.DP;
 /**
  * Q413. Arithmetic Slides.
  * nums [0, 1, 2, 3]

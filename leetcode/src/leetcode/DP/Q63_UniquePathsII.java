@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.DP;
 /**
  * Q63. Unique Paths II.
  * [DP]

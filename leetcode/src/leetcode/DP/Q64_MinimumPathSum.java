@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.DP;
 
 public class Q64_MinimumPathSum {
 

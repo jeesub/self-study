@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.DP;
 /**
  * Q44. Wildcard Matching.
  * [DP]

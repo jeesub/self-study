@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.DP;
 /**
  * Q727. Minimum Window Subsequence.
  * [DP]

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.BTR;
 /**
  * Q79. Word Search.
  * DFS & BTR

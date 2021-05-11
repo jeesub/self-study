@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.DP;
 /**	
  * Q91. Decode Ways.
  * DP

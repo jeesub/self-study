@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.Tree;
 /**
  * Q510. Inorder Successor in BST II.
  * Case 1. Right child's most left child.
@@ -9,7 +9,7 @@ public class Q510_InorderSuccessorInBSTII {
 
     public static Node inorderSuccessor(Node node) {
         Node successor = null;
-        
+
         if (node.right != null) {
             successor = node.right;
             while (successor.left != null) {

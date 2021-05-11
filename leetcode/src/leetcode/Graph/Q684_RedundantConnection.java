@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.Graph;
 
 /**
  * Q684. Redundant Connection.

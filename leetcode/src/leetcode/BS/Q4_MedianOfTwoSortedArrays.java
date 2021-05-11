@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.BS;
 /**
  * Q4. Median of Two Sorted Arrays.
  * Binary Search

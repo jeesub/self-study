@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.BFS;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

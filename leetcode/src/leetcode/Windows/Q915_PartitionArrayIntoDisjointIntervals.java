@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.Windows;
 /**
  * Q915. Partition Array into Disjoint Intervals.
  * Iterate through the array.

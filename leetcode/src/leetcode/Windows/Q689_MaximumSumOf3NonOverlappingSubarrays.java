@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.Windows;
 
 import java.util.Arrays;
 

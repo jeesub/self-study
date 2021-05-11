@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.BTR;
 
 import java.util.ArrayList;
 import java.util.Arrays;
