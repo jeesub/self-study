@@ -16,6 +16,8 @@ import java.util.Set;
  *   Use abs(x) and abs(y) as a target value. We don't need to see all 4 quadrant.
  *   Use x = -2 and y = -2 as lower boundaries.
  *   Use x = targetX + 2 and y = targetY + 2 as upper boundaries.
+ * TC: O(abs(x) * abs(y))
+ * SC: O(abs(x) * abs(y))
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q1197_MinimumKnightMoves {
