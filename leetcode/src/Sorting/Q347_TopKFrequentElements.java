@@ -9,6 +9,8 @@ import java.util.Map;
  * [Quickselect]
  * Build a map<num, freq>.
  * Put every element in the map into an array and do quickselect.
+ * TC: O(n) in the average case and O(n^2) in the worst case, where n is the length of the input array.
+ * SC: O(n), where n is the length of the input array.
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q347_TopKFrequentElements {
