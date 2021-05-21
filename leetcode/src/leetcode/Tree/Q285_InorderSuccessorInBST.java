@@ -1,4 +1,5 @@
-package leetcode;
+package leetcode.Tree;
+
 /**
  * Q285. Inorder Successor in BST.
  * 1. Go to find p

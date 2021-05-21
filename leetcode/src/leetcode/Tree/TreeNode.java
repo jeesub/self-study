@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.Tree;
 /**
  * TreeNode.
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
@@ -8,9 +8,7 @@ public class TreeNode {
     TreeNode left;
     TreeNode right;
 
-    public TreeNode() {
-        
-    }
+    public TreeNode() {}
 
     public TreeNode(int newVal) {
         val = newVal;
@@ -22,7 +20,7 @@ public class TreeNode {
         sb.append("preorder: [");
         preorderTraverse(this, sb);
         sb.setLength(sb.length() - 2);
-        sb.append("] , inorder: [");
+        sb.append("], inorder: [");
         inorderTraverse(this, sb);
         sb.setLength(sb.length() - 2);
         sb.append("]");

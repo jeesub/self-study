@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.Tree;
 
 public class Q1448_CountGoodNodesInBinaryTree {
 

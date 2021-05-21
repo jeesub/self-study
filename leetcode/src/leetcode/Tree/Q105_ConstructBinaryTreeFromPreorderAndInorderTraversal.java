@@ -1,4 +1,5 @@
-package leetcode;
+package leetcode.Tree;
+
 /**
  * Q105. Construct Binary Tree from Preorder and Inorder Traversal.
  * preorder = [3 || 9 || 20, 15, 7]
