@@ -46,7 +46,7 @@ public class Q297_SerializeAndDeserializeBinaryTree {
         preorderSerialize(sb, curr.right);
     }
 
-    public  static TreeNode deserialize(String data) {
+    public static TreeNode deserialize(String data) {
         Deque<String> deque = buildDeque(data);
         if (deque.isEmpty()) {
             return null;
