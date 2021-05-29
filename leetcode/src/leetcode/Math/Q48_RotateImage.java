@@ -21,17 +21,17 @@ public class Q48_RotateImage {
     private static void transpose(int[][] matrix) {
         int length = matrix.length;
         for (int i = 0; i < length - 1; i++) {
-            for (int j = 0; j < length - i - 1; j++) {
-                swap(matrix, i, j, length - j - 1, length - i - 1);
+            for (int j = i + 1; j < length; j++) {
+                swap(matrix, i, j, j, i);
             }
         }
     }
 
     private static void flip(int[][] matrix) {
         int length = matrix.length;
-        for (int i = 0; i < length / 2; i++) {
-            for (int j = 0; j < length; j++) {
-                swap(matrix, i, j, length - i - 1, j);
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length / 2; j++) {
+                swap(matrix, i, j, i, length - j - 1);
             }
         }
     }
