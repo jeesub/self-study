@@ -1,20 +1,32 @@
 package leetcode.DFS;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 /**
  * Q364. Nested List Weight Sum II.
- * Reveal every lists.
+ * [DFS]
+ * Reveal every list.
  * Make two lists, 1. list of integers and 2. list of depths.
  * Get the maxDepth. Use this to calculate weights.
  * TC: O(n), where n is the number of elements
+ * SC: O(n), where n is the number of elements
+ *
+ * [BFS]
+ * Reveal each layer at a time.
+ * Keep the accumulated sum and each number's sum.
+ * Before start each layer, add each number's sum to the accumulate sum (weighting).
+ * If the current node is integer, add it.
+ * If the current node is list, add it to a queue.
+ * TC: O(n^2), where n is the number of elements
  * SC: O(n), where n is the number of elements
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q364_NestedListWeightSumII {
 
-    public static int depthSumInverse(List<NestedInteger> nestedList) {
+    public static int depthSumInverseDFS(List<NestedInteger> nestedList) {
         List<Integer> integers = new ArrayList<>();
         List<Integer> depths = new ArrayList<>();
         for (NestedInteger each : nestedList) {
@@ -45,6 +57,34 @@ public class Q364_NestedListWeightSumII {
         for (NestedInteger each : nested.getList()) {
             reveal(each, integers, depths, depth + 1);
         }
+    }
+
+    public static int depthSumInverseBFS(List<NestedInteger> nestedList) {
+        Deque<NestedInteger> deque = new ArrayDeque<>();
+        for (NestedInteger each : nestedList) {
+            deque.add(each);
+        }
+        
+        int sum = 0;
+        int weights = 0;
+        while (!deque.isEmpty()) {
+            sum += weights;
+            int i = deque.size();
+            while(i > 0) {
+                i--;
+                NestedInteger curr = deque.remove();
+                if (curr.isInteger()) {
+                    sum += curr.getInteger();
+                    weights += curr.getInteger();
+                    continue;
+                }
+                for (NestedInteger each : curr.getList()) {
+                    deque.add(each);
+                }
+            }
+        }
+        
+        return sum;
     }
 
     private static class NestedInteger {
@@ -102,7 +142,9 @@ public class Q364_NestedListWeightSumII {
         List<NestedInteger> nestedList = new ArrayList<>();
         nestedList.add(first);
         // [1, [4, [6]]]
-        System.out.println(depthSumInverse(nestedList));
+        System.out.println(depthSumInverseDFS(nestedList));
+        // output: 17
+        System.out.println(depthSumInverseBFS(nestedList));
         // output: 17
     }
 
