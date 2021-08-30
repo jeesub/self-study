@@ -9,8 +9,8 @@ import java.util.LinkedList;
  * In each round of BFS, find the next step and add to a deque.
  * If the deque is empty and we didn't reach the end point, return -1.
  * If we reached the end point, return the number of layers.
- * TC: O(n^2), where n is the number of elements
- * SC: O(n), where n is the number of elements
+ * TC: O(n^2), where n is the length of the board
+ * SC: O(n^2), where n is the length of the board
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q909SnakesAndLadders {
