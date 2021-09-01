@@ -11,7 +11,7 @@ import java.util.Set;
  * base case: has all elements -> add to a result
  * Go to the next round with each element.
  * TC: O(n!), where n is the number of elements
- * SC: O(n!), where n is the number of elements
+ * SC: O(n), where n is the number of elements
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q46_Permutations {
