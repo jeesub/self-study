@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * Q199. Binary Tree Right Side View.
  * [Tree & BFS]
- * BFS levels one by one.
- * If a current node is the last, add it to the result list.
+ * BFS levels one by one from right to left.
+ * In every level, add the first node to the result list.
  * TC: O(n), where n is the number of nodes
  * SC: O(d), where d is the diameter of a tree
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
@@ -25,17 +25,15 @@ public class Q199_BinaryTreeRightSideView {
         Deque<TreeNode> deque = new ArrayDeque<>();
         deque.add(root);
         while (!deque.isEmpty()) {
+            result.add(deque.peek().val);
             int count = deque.size();
             while (count > 0) {
                 TreeNode curr = deque.remove();
-                if (curr.left != null) {
-                    deque.add(curr.left);
-                }
                 if (curr.right != null) {
                     deque.add(curr.right);
                 }
-                if (count == 1) {
-                    result.add(curr.val);
+                if (curr.left != null) {
+                    deque.add(curr.left);
                 }
                 count--;
             }
