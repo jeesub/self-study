@@ -4,3 +4,5 @@ Thumbs.db
 .DS_Store?
 *.log
 *.class
+leetcode/.idea/
+leetcodee/bin/
