@@ -6,12 +6,12 @@ import java.util.List;
 
 /**
  * 57. Insert Interval.
- *  * [Intervals]
- *  * Iterate through the intervals using a pointer.
- *  * Step 1. Add intervals before the newInterval.
- *  * Step 2. Merge overlaps.
- *  * Step 3. Add the updated newInterval.
- *  * Step 4. Add intervals after the newInterval.
+ * [Intervals]
+ * Iterate through the intervals using a pointer.
+ * Step 1. Add intervals before the newInterval.
+ * Step 2. Merge overlaps.
+ * Step 3. Add the updated newInterval.
+ * Step 4. Add intervals after the newInterval.
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q57_InsertInterval {

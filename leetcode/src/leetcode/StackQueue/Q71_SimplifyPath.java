@@ -5,15 +5,15 @@ import java.util.Deque;
 
 /**
  * 71. Simplify Path.
- *  * [Stack]
- *  * Track the path using a deque.
- *  * Split the path using "/" and iterate it.
- *  * case 1. empty string, continue.
- *  * case 2. ".", continue.
- *  * case 3. "..", removeFirst from the deque.
- *  * case 4. a word, addLast to the deque.
- *  * TC: O(n), where n is the length of the input string.
- *  * SC: O(n), where n is the length of the input string.
+ * [Stack]
+ * Track the path using a deque.
+ * Split the path using "/" and iterate it.
+ * case 1. empty string, continue.
+ * case 2. ".", continue.
+ * case 3. "..", removeFirst from the deque.
+ * case 4. a word, addLast to the deque.
+ * TC: O(n), where n is the length of the input string.
+ * SC: O(n), where n is the length of the input string.
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q71_SimplifyPath {
