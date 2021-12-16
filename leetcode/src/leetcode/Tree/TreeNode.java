@@ -21,6 +21,11 @@ public class TreeNode {
         val = newVal;
     }
 
+    /**
+     * Public constructor getting preorder traversal String input.
+     * e.g. "1, 2, 4, null, null, 5, null, null, 3, 6, null, null, null"
+     * @param data preorder traversal in String format.
+     */
     public TreeNode(String data) {
         deserialize(data);
     }
