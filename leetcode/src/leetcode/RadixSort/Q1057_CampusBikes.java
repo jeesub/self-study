@@ -11,8 +11,8 @@ import java.util.List;
  * Sort and iterate through the nodes.
  * If the worker or the bike is taken, continue.
  *
- * TC: O(n), where n is the longest length of workers and bikes
- * SC: O(n), where n is the longest length of workers and bikes
+ * TC: O(m * n)
+ * SC: O(m * n)
  *
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
