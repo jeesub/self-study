@@ -7,6 +7,8 @@ import java.util.List;
 /**
  * 1268. Search Suggestions System.
  * [Trie & DFS]
+ * TC: O(k), where k is the number of characters in products
+ * SC: O(n), where n is the number of trie nodes
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q1268_SearchSuggestionsSystem {
