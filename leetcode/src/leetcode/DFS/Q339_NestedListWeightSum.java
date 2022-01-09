@@ -21,7 +21,7 @@ public class Q339_NestedListWeightSum {
 
         public List<NestedInteger> getList();
     }
-    
+
     public static int depthSum(List<NestedInteger> nestedList) {
         return depthSum(nestedList, 1);
     }
