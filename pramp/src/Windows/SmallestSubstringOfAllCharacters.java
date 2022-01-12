@@ -41,7 +41,7 @@ public class SmallestSubstringOfAllCharacters {
             if (count != map.size()) {
                 continue;
             }
-            
+
             while (i <= j && count == map.size()) {
                 if (!map.containsKey(str.charAt(i))) {
                     i++;
