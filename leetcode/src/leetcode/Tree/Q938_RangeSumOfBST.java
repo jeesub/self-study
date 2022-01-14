@@ -1,6 +1,7 @@
 package leetcode.Tree;
 
 /**
+ * 938. Range Sum of BST.
  * [Tree & DFS]
  * Inorder traverse.
  * If curr < low, we don't have to go further left.
