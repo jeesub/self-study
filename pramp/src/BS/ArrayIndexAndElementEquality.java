@@ -24,12 +24,13 @@ public class ArrayIndexAndElementEquality {
         int right = arr.length - 1;
         while (left <= right) {
             int mid = left + (right - left) / 2;
-            if (arr[mid] > mid) {
+            if (arr[mid] == mid && (mid == 0 || arr[mid - 1] != mid - 1)) {
+                return mid;
+            }
+            if (arr[mid] >= mid) {
                 right = mid - 1;
             } else if (arr[mid] < mid) {
                 left = mid + 1;
-            } else {
-                return mid;
             }
         }
         return -1;
