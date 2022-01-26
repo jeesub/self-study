@@ -7,6 +7,8 @@ import java.util.Arrays;
  * 1. Reverse the input array.
  * 2. Reverse each word.
  * Reverse: Swap(start, end) while start++ < end--
+ * TC: O(n)
+ * SC: O(1)
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class SentenceReverse {

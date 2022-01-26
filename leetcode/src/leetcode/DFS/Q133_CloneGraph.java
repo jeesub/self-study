@@ -12,6 +12,8 @@ import java.util.Map;
  * Keep track of nodes using a Map<original node, copied node>.
  * If map contains key(node), we have seen it. Return a value.
  * Else, dfs. Add the next node's copied node to the neighbors list.
+ * TC: O(e + v)
+ * SC: O(e)
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q133_CloneGraph {
