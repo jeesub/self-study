@@ -2,7 +2,22 @@ package leetcode.Quick;
 
 /**
  * Q215. Kth Largest Element in an Array.
- * [Quick Selection]
+ * [Quickselect]
+ * [1, 3, 5, 7, 6, 2, 4]
+ *                    ^ pivot
+ *        ^ should be on the right part // partition stops here.
+ *        (if nums[i] > pivot, do nothing)
+ *                 ^ should be on the left part // swap(curr, partition) & partition++
+ *                 (if nums[i] < pivot, swap(i, partition++))
+ *
+ * [1, 3, 2, 7, 6, 5, 4]                        // partition is pointing 7 now
+ * finished the first iteration. swap(partition, pivot number)
+ *
+ * [1, 3, 2, 4, 6, 5, 7]
+ *           ^
+ * left side: smaller than 4
+ * right side: larger than 4
+ *
  * TC: O(n^2) in the worst case. O(n) in the average case.
  * SC: O(1)
  *
@@ -34,21 +49,27 @@ public class Q215_KthLargestElementInAnArray {
     }
 
     private static int getPartition(int[] nums, int start, int end) {
+        if (start == end) {
+            return start;
+        }
         int pivot = nums[end];
-        int left = start;
+        int partition = start;
         for (int i = start; i < end; i++) {
             if (nums[i] < pivot) {
-                swap(nums, left++, i);
+                swap(nums, i, partition++);
             }
         }
-        swap(nums, left, end);
-        return left;
+        swap(nums, end, partition);
+        return partition;
     }
 
-    private static void swap(int[] nums, int a, int b) {
-        int tmp = nums[a];
-        nums[a] = nums[b];
-        nums[b] = tmp;
+    private static void swap(int[] nums, int i, int j) {
+        if (i == j) {
+            return;
+        }
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
     }
 
     public static void main(String[] args) {

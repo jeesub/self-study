@@ -1,4 +1,4 @@
-package leetcode.Tree;
+package leetcode.BST;
 
 /**
  * Q285. Inorder Successor in BST.

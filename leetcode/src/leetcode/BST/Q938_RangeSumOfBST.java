@@ -1,4 +1,4 @@
-package leetcode.Tree;
+package leetcode.BST;
 
 /**
  * 938. Range Sum of BST.
@@ -36,7 +36,7 @@ public class Q938_RangeSumOfBST {
     }
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode("10, 5, 3, null, null, 7, null, null, 15, null, 18, null, null");
+        TreeNode root = new TreeNode(new int[]{10, 5, 3, 7, 15, 18});
         System.out.println(rangeSumBST(root, 7, 15));
         // output: 32
     }

@@ -1,4 +1,4 @@
-package leetcode.Tree;
+package leetcode.BST;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
