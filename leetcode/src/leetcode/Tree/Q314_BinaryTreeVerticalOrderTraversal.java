@@ -20,8 +20,7 @@ public class Q314_BinaryTreeVerticalOrderTraversal {
         Map<Integer, List<Integer>> map = new HashMap<>();
         Deque<Node> deque = new LinkedList<>();
         deque.add(new Node(root, 0));
-        int minColumn = 0;
-        int maxColumn = 0;
+        int minCol = 0;
         while (!deque.isEmpty()) {
             Node node = deque.remove();
             TreeNode treeNode = node.treeNode;
@@ -31,20 +30,16 @@ public class Q314_BinaryTreeVerticalOrderTraversal {
             map.get(node.column).add(treeNode.val);
             if (treeNode.left != null) {
                 deque.add(new Node(treeNode.left, node.column - 1));
-                minColumn = Math.min(minColumn, node.column - 1);
+                minCol = Math.min(minCol, node.column - 1);
             }
             if (treeNode.right != null) {
                 deque.add(new Node(treeNode.right, node.column + 1));
-                maxColumn = Math.max(maxColumn, node.column + 1);
             }
         }
 
         List<List<Integer>> result = new ArrayList<>();
-        for (int i = minColumn; i <= maxColumn; i++) {
-            if (!map.containsKey(i)) {
-                continue;
-            }
-            result.add(map.get(i));
+        while (map.containsKey(minCol)) {
+            result.add(map.get(minCol++));
         }
 
         return result;
