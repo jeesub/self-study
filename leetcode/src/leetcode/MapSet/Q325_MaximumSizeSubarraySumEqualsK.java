@@ -1,14 +1,18 @@
-package leetcode;
+package leetcode.MapSet;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Q325. Maximum Size Subarray Sum Equals k.
- * Make an accumulate sum int and accumulate sum map.
- * Map <Key: accumulate sum, Value: the smallest index of the accumulate sum>
- * Map should have <0, -1> to deal with subarray(0..i) case.
- * While making an accumulate sum, if we can find acc[i] - k in the map, it would be a candidate.
+ * 325. Maximum Size Subarray Sum Equals k.
+ * [Map]
+ * sum(0..j) - sum(0..i) = sum(i + 1..j)
+ * find i & j where sum(i + 1..j) = k
+ * Map<accumulated sum, the first index> // default: (0, -1)
+ * if map doesn't contain key acc, map.put(acc, curr index)
+ * if map contains key (acc - k), max = max(max, curr index - prev index)
+ * TC: O(n)
+ * SC: O(n)
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
  */
 public class Q325_MaximumSizeSubarraySumEqualsK {
@@ -16,18 +20,18 @@ public class Q325_MaximumSizeSubarraySumEqualsK {
     public static int maxSubArrayLen(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
         map.put(0, -1);
+        int max = 0;
         int acc = 0;
-        int longest = 0;
         for (int i = 0; i < nums.length; i++) {
             acc += nums[i];
-            if (map.containsKey(acc - k)) {
-                longest = Math.max(longest, i - map.get(acc - k));
-            }
             if (!map.containsKey(acc)) {
                 map.put(acc, i);
             }
+            if (map.containsKey(acc - k)) {
+                max = Math.max(max, i - map.get(acc - k));
+            }
         }
-        return longest;
+        return max;
     }
 
     public static void main(String[] args) {
