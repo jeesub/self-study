@@ -8,7 +8,7 @@ package leetcode.BS;
  *
  * find the left most index where missing # <= k
  *
- * if (current # of missing number < k), left = mid - 1
+ * if (current # of missing number < k), left = mid + 1
  * if (k <= current # of missing number), right = mid - 1
  *
  * TC: O(logN)
