@@ -7,7 +7,8 @@ import java.util.Arrays;
  * [Binary Search]
  * left = max(sum(weights) / days, max weight)
  * right = sum(weights)
- * if mid is valid && (mid - 1) is invalid, we found it.
+ * if mid is valid, right = mid - 1
+ * else, left = mid + 1
  * TC: O(n * log(k)), where k is right - left
  * SC: O(1)
  * @author Jeesub Lee (jeesubl@andrew.cmu.edu)
@@ -18,12 +19,9 @@ public class Q1011_CapacityToShipPackagesWithinDDays {
         int max = Arrays.stream(weights).max().getAsInt();
         int left = Math.max(sum / days, max);
         int right = sum;
-        while (left < right) {
+        while (left <= right) {
             int mid = left + (right - left) / 2;
             if (isValid(weights, days, mid)) {
-                if (!isValid(weights, days, mid - 1)) {
-                    return mid;
-                }
                 right = mid - 1;
             } else {
                 left = mid + 1;
