@@ -6,10 +6,9 @@ import java.util.Arrays;
  * 1891. Cutting Ribbons.
  * [Binary Search]
  * BS between 0 and max(ribbons)
- * if valid(mid) && invalid(mid + 1), we found it. Return mid.
- * if valid(mid) && valid(mid + 1), left = mid + 1
- * else, right = mid - 1
- * return left
+ * if valid(mid), left = mid + 1
+ * if invalid(mid), right = mid - 1
+ * return right
  * valid? sum(ribbon / length) >= k // if length == 0, return true
  * use long to handle the overflow
  * TC: O(n * logk), where k = max(ribbons)
@@ -20,18 +19,15 @@ public class Q1891_CuttingRibbons {
     public static int maxLength(int[] ribbons, int k) {
         int left = 0;
         int right = Arrays.stream(ribbons).max().getAsInt();
-        while (left < right) {
+        while (left <= right) {
             int mid = left + (right - left) / 2;
             if (valid(ribbons, k, mid)) {
-                if (!valid(ribbons, k, mid + 1)) {
-                    return mid;
-                }
                 left = mid + 1;
             } else {
                 right = mid - 1;
             }
         }
-        return left;
+        return right;
     }
 
     private static boolean valid(int[] ribbons, int k, int length) {
