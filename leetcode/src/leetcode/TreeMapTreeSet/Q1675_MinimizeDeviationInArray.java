@@ -1,4 +1,4 @@
-package leetcode.TreeSetTreeMap;
+package leetcode.TreeMapTreeSet;
 
 import java.util.TreeSet;
 
